@@ -1,0 +1,691 @@
+/* WinUI 3 for Vuetify — tokens and component primitives. */
+$font-family: 'Segoe UI Variable Text', 'Segoe UI', 'Microsoft YaHei UI', 'Microsoft YaHei', sans-serif;
+
+:root {
+  color-scheme: light;
+  --winui-radius-control: 4px;
+  --winui-radius-overlay: 8px;
+  --winui-space-1: 4px;
+  --winui-space-2: 8px;
+  --winui-space-3: 12px;
+  --winui-space-4: 16px;
+  --winui-space-5: 24px;
+  --winui-page-inset: 24px;
+  --winui-duration-faster: 83ms;
+  --winui-duration-fast: 167ms;
+  --winui-duration-normal: 250ms;
+  --winui-ease-enter: cubic-bezier(0, 0, 0, 1);
+  --winui-ease-exit: cubic-bezier(1, 0, 1, 1);
+  --winui-control-stroke: rgba(0, 0, 0, .14);
+  --winui-control-stroke-hover: rgba(0, 0, 0, .2);
+  --winui-field-stroke-top: rgba(0, 0, 0, .075);
+  --winui-field-stroke-side: rgba(0, 0, 0, .14);
+  --winui-field-stroke-bottom: rgba(0, 0, 0, .28);
+  --winui-control-shadow: 0 1px 1px rgba(0, 0, 0, .045);
+  --winui-card-shadow: 0 1px 2px rgba(0, 0, 0, .045);
+  --winui-flyout-shadow: 0 4px 14px rgba(0, 0, 0, .09);
+  --winui-dialog-shadow: 0 20px 48px rgba(0, 0, 0, .24);
+}
+
+html { overflow-y: auto; background: #f3f3f3; }
+body { margin: 0; min-width: 320px; font-size: 14px; line-height: 20px; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+.v-application { font-family: $font-family !important; color: rgb(var(--v-theme-on-surface)); }
+.v-theme--winuiDark {
+  color-scheme: dark;
+  --winui-control-stroke: rgba(255, 255, 255, .12);
+  --winui-control-stroke-hover: rgba(255, 255, 255, .18);
+  --winui-field-stroke-top: rgba(255, 255, 255, .07);
+  --winui-field-stroke-side: rgba(255, 255, 255, .11);
+  --winui-field-stroke-bottom: rgba(255, 255, 255, .28);
+  --winui-control-shadow: 0 1px 1px rgba(0, 0, 0, .22);
+  --winui-card-shadow: 0 1px 2px rgba(0, 0, 0, .22);
+  --winui-flyout-shadow: 0 8px 22px rgba(0, 0, 0, .32);
+  --winui-dialog-shadow: 0 20px 52px rgba(0, 0, 0, .54);
+}
+.font-weight-bold { font-weight: 600 !important; }
+
+/* Long-lived content surfaces: 8px containers, one contour, one subtle elevation. */
+.v-card {
+  border: 1px solid rgb(var(--v-theme-outline)) !important;
+  border-radius: var(--winui-radius-overlay) !important;
+  box-shadow: var(--winui-card-shadow) !important;
+}
+.v-card-title { padding: var(--winui-space-4) var(--winui-space-4) var(--winui-space-2); font-size: 15px !important; line-height: 20px; font-weight: 600 !important; }
+.v-card-text { padding: var(--winui-space-4); font-size: 14px; line-height: 20px; }
+.v-card-actions { min-height: 56px; gap: var(--winui-space-2); padding: var(--winui-space-3) var(--winui-space-4); }
+.v-card-actions .v-btn + .v-btn { margin-inline-start: 0 !important; }
+.v-card-actions .v-btn--variant-text.text-primary {
+  color: rgb(var(--v-theme-on-primary)) !important;
+  border: 1px solid rgba(0, 0, 0, .18) !important;
+  background: rgb(var(--v-theme-primary));
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .14) !important;
+}
+.v-card-actions .v-btn--variant-text.text-primary:hover { filter: brightness(.96); }
+.v-card-actions .v-btn--variant-text.text-primary:active { box-shadow: none !important; filter: brightness(.92); }
+.v-divider { border-color: rgb(var(--v-theme-outline)) !important; opacity: 1; }
+
+/* Buttons use fills and elevation-state changes; Material ink ripples are disabled. */
+.v-btn {
+  --v-hover-opacity: 0;
+  --v-pressed-opacity: 0;
+  min-height: 32px;
+  border: 1px solid transparent;
+  border-radius: var(--winui-radius-control) !important;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 12px;
+  font-weight: 600;
+  transition:
+    background-color var(--winui-duration-faster) var(--winui-ease-enter),
+    border-color var(--winui-duration-faster) var(--winui-ease-enter),
+    box-shadow var(--winui-duration-faster) var(--winui-ease-enter),
+    color var(--winui-duration-faster) var(--winui-ease-enter);
+}
+.v-ripple__container { display: none !important; }
+.v-btn__overlay { opacity: 0 !important; transition: none !important; }
+.v-btn:active { transform: none; }
+.v-btn:focus-visible { outline: 2px solid rgb(var(--v-theme-on-surface)); outline-offset: 2px; }
+.v-btn--variant-elevated:not(.v-btn--icon),
+.v-btn--variant-flat:not(.v-btn--icon) {
+  border: 1px solid rgba(0, 0, 0, .18) !important;
+  background-image: none !important;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .14) !important;
+}
+.v-btn--variant-elevated:not(.v-btn--icon):hover,
+.v-btn--variant-flat:not(.v-btn--icon):hover { filter: brightness(.96); }
+.v-btn--variant-elevated:not(.v-btn--icon):active,
+.v-btn--variant-flat:not(.v-btn--icon):active {
+  background-image: none !important;
+  box-shadow: none !important;
+  filter: brightness(.94);
+}
+.v-btn--variant-outlined {
+  border: 1px solid var(--winui-control-stroke) !important;
+  background-color: rgb(var(--v-theme-surface));
+  background-image: none;
+  box-shadow: var(--winui-control-shadow) !important;
+}
+.v-btn--variant-outlined:hover {
+  border-color: var(--winui-control-stroke-hover) !important;
+  background-color: rgba(var(--v-theme-on-surface), .035);
+  box-shadow: var(--winui-control-shadow) !important;
+}
+.v-btn--variant-outlined:active {
+  border-color: var(--winui-control-stroke) !important;
+  background-color: rgba(var(--v-theme-on-surface), .065);
+  box-shadow: none !important;
+}
+.v-btn--variant-tonal:not(.v-btn--icon) {
+  border-color: rgba(var(--v-theme-on-surface), .1);
+  background-color: rgba(var(--v-theme-on-surface), .055);
+  background-image: none;
+  box-shadow: var(--winui-control-shadow) !important;
+}
+.v-btn--variant-tonal:hover { background-color: rgba(var(--v-theme-on-surface), .08); }
+.v-btn--variant-tonal:active { background-color: rgba(var(--v-theme-on-surface), .11); box-shadow: none !important; }
+.v-btn--variant-text { border-color: transparent; box-shadow: none !important; }
+.v-btn--variant-text:hover { background: rgba(var(--v-theme-on-surface), .055); }
+.v-btn--variant-text:active { background: rgba(var(--v-theme-on-surface), .09); }
+.v-btn--icon { min-width: 32px; width: 32px; height: 32px; padding: 0; border-radius: var(--winui-radius-control) !important; box-shadow: none !important; }
+.v-btn--disabled {
+  opacity: 1 !important;
+  color: rgba(var(--v-theme-on-surface), .42) !important;
+  border-color: rgba(var(--v-theme-on-surface), .11) !important;
+  background-color: rgba(var(--v-theme-on-surface), .025) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+.v-btn--disabled .v-btn__content,
+.v-btn--disabled .v-icon { opacity: 1 !important; }
+.v-btn--disabled .v-btn__overlay,
+.v-btn--disabled .v-btn__underlay { opacity: 0 !important; }
+.v-btn-toggle { overflow: hidden; border: 1px solid var(--winui-control-stroke); border-radius: var(--winui-radius-control) !important; box-shadow: var(--winui-control-shadow); }
+.v-btn-toggle > .v-btn { border: 0 !important; border-radius: 0 !important; box-shadow: none !important; }
+.v-btn-toggle > .v-btn + .v-btn { border-inline-start: 1px solid rgb(var(--v-theme-outline)) !important; }
+
+/* TextBox and ComboBox: WinUI uses a persistent label above the control,
+   rather than Material's label floating through the outline. */
+.v-input:has(.v-field-label) {
+  padding-top: 32px;
+}
+.v-input:has(.v-field-label) .v-field__field > .v-field-label {
+  top: -32px !important;
+  inset-inline-start: 0 !important;
+  margin-inline-start: 0 !important;
+  width: 100%;
+  max-width: 100% !important;
+  height: 20px;
+  display: flex;
+  justify-content: flex-start;
+  text-align: start;
+  transform: none !important;
+  transform-origin: left center !important;
+  color: rgb(var(--v-theme-on-surface));
+  font-size: 14px;
+  line-height: 20px;
+  opacity: 1;
+  pointer-events: none;
+}
+/* A prepend icon owns a 36px grid column in Vuetify.  WinUI labels belong to
+   the whole TextBox, so move the label back across that Material text inset. */
+.v-input:has(.v-field__prepend-inner):has(.v-field-label) .v-field__field > .v-field-label {
+  inset-inline-start: -36px !important;
+  width: calc(100% + 36px);
+  max-width: calc(100% + 36px) !important;
+}
+.v-card-text > .v-input:not(:last-child),
+.v-form > .v-input:not(:last-child) {
+  margin-bottom: var(--winui-space-3) !important;
+}
+.v-input:has(.v-field-label) .v-field__outline__notch > .v-field-label { display: none; }
+.v-field {
+  min-height: 32px;
+  border-radius: var(--winui-radius-control) !important;
+  background: rgb(var(--v-theme-surface-variant));
+  background-image: none !important;
+  font-size: 14px;
+  box-shadow:
+    inset 0 1px 0 var(--winui-field-stroke-top),
+    inset 1px 0 0 var(--winui-field-stroke-side),
+    inset -1px 0 0 var(--winui-field-stroke-side),
+    inset 0 -1px 0 var(--winui-field-stroke-bottom);
+  transition: background-color var(--winui-duration-faster) var(--winui-ease-enter), box-shadow var(--winui-duration-faster) var(--winui-ease-enter);
+}
+.v-field:hover {
+  background: rgb(var(--v-theme-surface));
+  box-shadow:
+    inset 0 1px 0 rgba(var(--v-theme-on-surface), .1),
+    inset 1px 0 0 var(--winui-control-stroke-hover),
+    inset -1px 0 0 var(--winui-control-stroke-hover),
+    inset 0 -1px 0 rgba(var(--v-theme-on-surface), .42);
+}
+.v-field--focused,
+.v-field--focused:hover {
+  background: rgb(var(--v-theme-surface));
+  box-shadow:
+    inset 0 1px 0 var(--winui-field-stroke-top),
+    inset 1px 0 0 var(--winui-field-stroke-side),
+    inset -1px 0 0 var(--winui-field-stroke-side),
+    inset 0 -2px 0 rgb(var(--v-theme-primary));
+}
+.v-input--error .v-field,
+.v-input--error .v-field:hover,
+.v-input--error .v-field--focused {
+  box-shadow:
+    inset 0 1px 0 var(--winui-field-stroke-top),
+    inset 1px 0 0 var(--winui-field-stroke-side),
+    inset -1px 0 0 var(--winui-field-stroke-side),
+    inset 0 -2px 0 rgb(var(--v-theme-error));
+}
+.v-input--disabled .v-field {
+  background: rgba(var(--v-theme-on-surface), .035);
+  box-shadow:
+    inset 0 1px 0 rgba(var(--v-theme-on-surface), .04),
+    inset 1px 0 0 rgba(var(--v-theme-on-surface), .075),
+    inset -1px 0 0 rgba(var(--v-theme-on-surface), .075),
+    inset 0 -1px 0 rgba(var(--v-theme-on-surface), .11);
+  opacity: .62;
+}
+.v-field--disabled { pointer-events: none; }
+.v-field--readonly:not(.v-field--focused) {
+  background: rgba(var(--v-theme-on-surface), .025);
+}
+.v-field__overlay { display: none !important; }
+.v-field__outline { display: none !important; }
+.v-field__input { min-height: 32px !important; padding-top: 6px !important; padding-bottom: 6px !important; font-size: 14px; }
+.v-field__prepend-inner, .v-field__append-inner { padding-top: 5px !important; }
+.v-field--variant-filled { border-radius: var(--winui-radius-control) !important; }
+.v-field--variant-filled .v-field__input { padding-top: 6px !important; }
+.v-label { font-size: 12px; }
+.v-messages { font-size: 12px; line-height: 16px; }
+
+/* ToggleSwitch: neutral track, accent only in the checked state. */
+.v-switch {
+  --v-hover-opacity: 0;
+  --v-focus-opacity: 0;
+  --v-pressed-opacity: 0;
+}
+.v-switch .v-selection-control { min-height: 32px; }
+.v-switch .v-selection-control__wrapper {
+  width: 40px;
+  height: 28px;
+}
+.v-switch .v-switch__track {
+  width: 40px;
+  min-width: 40px;
+  height: 20px;
+  padding: 0;
+  border: 1px solid rgba(var(--v-theme-on-surface), .68);
+  border-radius: 10px;
+  background: transparent !important;
+  color: transparent !important;
+  opacity: 1 !important;
+  box-sizing: border-box;
+  transition:
+    border-color var(--winui-duration-faster) var(--winui-ease-enter),
+    background-color var(--winui-duration-faster) var(--winui-ease-enter);
+}
+.v-switch .v-selection-control__input {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  transform: translateX(-10px) !important;
+  transition: transform var(--winui-duration-fast) var(--winui-ease-enter) !important;
+}
+.v-switch .v-selection-control__input::before { display: none !important; }
+.v-switch .v-selection-control__input input {
+  width: 40px;
+  height: 28px;
+  left: -10px;
+  top: -4px;
+}
+.v-switch .v-switch__thumb,
+.v-switch:not(.v-switch--inset) .v-switch__thumb {
+  width: 12px !important;
+  height: 12px !important;
+  border: 0 !important;
+  background-color: rgb(var(--v-theme-on-surface-variant)) !important;
+  color: rgb(var(--v-theme-on-surface-variant)) !important;
+  box-shadow: none !important;
+  filter: none !important;
+  transform: none !important;
+  transition:
+    width var(--winui-duration-faster) var(--winui-ease-enter),
+    height var(--winui-duration-faster) var(--winui-ease-enter),
+    background-color var(--winui-duration-faster) var(--winui-ease-enter) !important;
+}
+.v-switch:not(.v-input--disabled):hover .v-switch__track {
+  border-color: rgba(var(--v-theme-on-surface), .82);
+}
+.v-switch:not(.v-input--disabled):hover .v-switch__thumb {
+  width: 14px !important;
+  height: 14px !important;
+}
+.v-switch .v-selection-control--dirty .v-switch__track {
+  border-color: rgb(var(--v-theme-primary));
+  background: rgb(var(--v-theme-primary)) !important;
+}
+.v-switch .v-selection-control--dirty .v-selection-control__input {
+  transform: translateX(10px) !important;
+}
+.v-switch .v-selection-control--dirty .v-switch__thumb {
+  background-color: rgb(var(--v-theme-on-primary)) !important;
+  color: rgb(var(--v-theme-on-primary)) !important;
+}
+.v-switch .v-selection-control--focus-visible .v-switch__track {
+  outline: 2px solid rgb(var(--v-theme-on-surface));
+  outline-offset: 2px;
+}
+.v-switch.v-input--disabled { opacity: .38; }
+.v-switch .v-label {
+  padding-inline-start: var(--winui-space-2);
+  font-size: 14px;
+}
+
+/* CheckBox: WinUI uses a 20px rounded box inside a 28px hit target. */
+.v-checkbox-btn {
+  --v-hover-opacity: 0;
+  --v-focus-opacity: 0;
+  min-height: 28px;
+}
+.v-checkbox-btn .v-selection-control__wrapper {
+  width: 28px;
+  height: 28px;
+}
+.v-checkbox-btn .v-selection-control__input {
+  width: 20px;
+  height: 20px;
+  overflow: visible;
+  border-radius: var(--winui-radius-control);
+  color: rgb(var(--v-theme-on-surface-variant)) !important;
+}
+.v-checkbox-btn .v-selection-control__input > .v-icon { display: none; }
+.v-checkbox-btn .v-selection-control__input input {
+  width: 28px;
+  height: 28px;
+  left: -4px;
+  top: -4px;
+}
+.v-checkbox-btn .v-selection-control__input::before {
+  width: 20px;
+  height: 20px;
+  inset: 0;
+  border: 1px solid rgba(var(--v-theme-on-surface), .58);
+  border-radius: var(--winui-radius-control);
+  background: transparent;
+  box-sizing: border-box;
+  opacity: 1 !important;
+  transition:
+    border-color var(--winui-duration-faster) var(--winui-ease-enter),
+    background-color var(--winui-duration-faster) var(--winui-ease-enter);
+}
+.v-checkbox-btn .v-selection-control__input::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+}
+.v-checkbox-btn:not(.v-selection-control--disabled):hover .v-selection-control__input::before {
+  border-color: rgba(var(--v-theme-on-surface), .72);
+  background: rgba(var(--v-theme-on-surface), .035);
+}
+.v-checkbox-btn.v-selection-control--dirty .v-selection-control__input::before,
+.v-checkbox-btn:has(input[aria-checked='mixed']) .v-selection-control__input::before {
+  border-color: rgb(var(--v-theme-primary));
+  background: rgb(var(--v-theme-primary));
+}
+.v-checkbox-btn.v-selection-control--dirty:not(:has(input[aria-checked='mixed'])) .v-selection-control__input::after {
+  left: 3px;
+  top: 3px;
+  width: 14px;
+  height: 14px;
+  border: 0;
+  background: rgb(var(--v-theme-on-primary));
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M6.25 12.25 2.5 8.5l1.5-1.5 2.25 2.25L12 3.5 13.5 5z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M6.25 12.25 2.5 8.5l1.5-1.5 2.25 2.25L12 3.5 13.5 5z'/%3E%3C/svg%3E") center / contain no-repeat;
+  opacity: 1;
+  transform: none;
+}
+.v-checkbox-btn:has(input[aria-checked='mixed']) .v-selection-control__input::after {
+  left: 5px;
+  top: 9px;
+  width: 10px;
+  height: 2px;
+  border-radius: 1px;
+  background: rgb(var(--v-theme-on-primary));
+  opacity: 1;
+}
+.v-checkbox-btn.v-selection-control--focus-visible .v-selection-control__input {
+  outline: 2px solid rgb(var(--v-theme-on-surface));
+  outline-offset: 2px;
+}
+.v-checkbox-btn.v-selection-control--disabled { opacity: .38; }
+.v-checkbox-btn .v-label { margin-inline-start: var(--winui-space-2); font-size: 14px; }
+
+/* RadioButton: a 20px circular stroke with an accent inner dot. */
+.v-radio {
+  --v-hover-opacity: 0;
+  --v-focus-opacity: 0;
+  min-height: 28px;
+}
+.v-radio .v-selection-control__wrapper { width: 28px; height: 28px; }
+.v-radio .v-selection-control__input {
+  width: 20px;
+  height: 20px;
+  overflow: visible;
+  border-radius: 50%;
+  color: rgb(var(--v-theme-on-surface-variant)) !important;
+}
+.v-radio .v-selection-control__input > .v-icon { display: none; }
+.v-radio .v-selection-control__input input { width: 28px; height: 28px; left: -4px; top: -4px; }
+.v-radio .v-selection-control__input::before {
+  width: 20px;
+  height: 20px;
+  inset: 0;
+  border: 1px solid rgba(var(--v-theme-on-surface), .58);
+  border-radius: 50%;
+  background: rgb(var(--v-theme-surface));
+  box-sizing: border-box;
+  opacity: 1 !important;
+  transition: border-color var(--winui-duration-faster) var(--winui-ease-enter);
+}
+.v-radio .v-selection-control__input::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgb(var(--v-theme-primary));
+  opacity: 0;
+  transform: scale(.6);
+  transition: opacity var(--winui-duration-faster) var(--winui-ease-enter), transform var(--winui-duration-fast) var(--winui-ease-enter);
+}
+.v-radio:not(.v-selection-control--disabled):hover .v-selection-control__input::before { border-color: rgba(var(--v-theme-on-surface), .72); }
+.v-radio.v-selection-control--dirty .v-selection-control__input::before { border-color: rgb(var(--v-theme-primary)); }
+.v-radio.v-selection-control--dirty .v-selection-control__input::after { opacity: 1; transform: scale(1); }
+.v-radio .v-selection-control--focus-visible .v-selection-control__input { outline: 2px solid rgb(var(--v-theme-on-surface)); outline-offset: 2px; }
+.v-radio.v-selection-control--disabled { opacity: .38; }
+.v-radio .v-label { margin-inline-start: var(--winui-space-2); font-size: 14px; }
+
+/* Slider and Rating retain Vuetify behaviour while using WinUI geometry and states. */
+.v-slider .v-input__control { min-height: 32px; }
+.v-slider-track__background { height: 4px !important; border-radius: 2px; background: rgba(var(--v-theme-on-surface), .28) !important; opacity: 1 !important; }
+.v-slider-track__fill { height: 4px !important; border-radius: 2px; background: rgb(var(--v-theme-primary)) !important; }
+.v-slider-thumb__surface {
+  width: 16px !important;
+  height: 16px !important;
+  border: 4px solid rgb(var(--v-theme-primary));
+  background: rgb(var(--v-theme-surface)) !important;
+  box-shadow: none !important;
+  transition: width var(--winui-duration-faster) var(--winui-ease-enter), height var(--winui-duration-faster) var(--winui-ease-enter);
+}
+.v-slider:not(.v-input--disabled):hover .v-slider-thumb__surface { width: 18px !important; height: 18px !important; }
+.v-slider-thumb__ripple { display: none !important; }
+.v-slider-thumb:focus-visible .v-slider-thumb__surface { outline: 2px solid rgb(var(--v-theme-on-surface)); outline-offset: 2px; }
+.v-slider.v-input--disabled { opacity: .38; }
+.v-rating { gap: 2px; }
+.v-rating .v-btn { width: 28px; min-width: 28px; height: 28px; padding: 0; border: 0 !important; background: transparent !important; box-shadow: none !important; }
+.v-rating .v-icon { font-size: 20px; }
+.v-rating--readonly .v-btn, .v-rating .v-btn--disabled { opacity: .38; }
+
+/* ColorPicker is a single content surface, not an elevated Material sheet. */
+.v-color-picker {
+  overflow: hidden;
+  border: 1px solid rgb(var(--v-theme-outline));
+  border-radius: var(--winui-radius-overlay) !important;
+  background: rgb(var(--v-theme-surface-variant)) !important;
+  box-shadow: none !important;
+}
+.v-color-picker__controls { padding: var(--winui-space-4); }
+.v-color-picker-swatches { padding: 0 var(--winui-space-4) var(--winui-space-4); }
+.v-color-picker-swatches__swatch { margin: var(--winui-space-1); }
+
+.v-progress-linear { border-radius: 2px; background: rgba(var(--v-theme-on-surface), .16); }
+.v-progress-linear__determinate { transition-duration: var(--winui-duration-normal) !important; transition-timing-function: var(--winui-ease-enter) !important; }
+
+.v-chip { height: 24px; padding: 0 8px; border-radius: var(--winui-radius-control) !important; font-size: 12px; font-weight: 600; letter-spacing: 0; }
+.v-chip--variant-tonal .v-chip__underlay { opacity: .1; }
+.v-list[nav] .v-list-item { border-radius: var(--winui-radius-control) !important; }
+.v-list[nav] .v-list-item--active { background: rgba(var(--v-theme-on-surface), .075); color: rgb(var(--v-theme-on-surface)); }
+.v-list[nav] .v-list-item--active .v-list-item__overlay { opacity: 0 !important; }
+.v-list[nav] .v-list-item--active::before { content: ''; position: absolute; left: 2px; top: 9px; bottom: 9px; width: 3px; border-radius: 2px; background: rgb(var(--v-theme-primary)); opacity: 1; }
+
+/* ContentDialog is opaque over Smoke. It is not an Acrylic flyout. */
+.v-dialog > .v-overlay__content { box-shadow: none !important; }
+.v-dialog > .v-overlay__content > .v-card {
+  border-radius: var(--winui-radius-overlay) !important;
+  background: rgb(var(--v-theme-surface));
+  box-shadow: var(--winui-dialog-shadow) !important;
+  backdrop-filter: none;
+}
+.v-dialog > .v-overlay__content > .v-card > .v-card-title { min-height: 56px; display: flex; align-items: center; padding: 0 var(--winui-space-4); border-bottom: 0; font-size: 20px !important; line-height: 28px; }
+.v-dialog > .v-overlay__content > .v-card > .v-card-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--winui-space-2);
+  padding: var(--winui-space-3) var(--winui-space-4) !important;
+  border-top: 1px solid rgb(var(--v-theme-outline));
+  background: rgb(var(--v-theme-surface-variant));
+}
+.v-dialog .v-row--dense { margin: calc(var(--winui-space-3) / -2); }
+.v-dialog .v-row--dense > .v-col,
+.v-dialog .v-row--dense > [class*='v-col-'] { padding: calc(var(--winui-space-3) / 2); }
+.v-dialog > .v-overlay__content > .v-card > .v-card-actions > .v-spacer { display: none; }
+.v-dialog > .v-overlay__content > .v-card > .v-card-actions > .v-btn:not(.v-btn--icon) {
+  flex: 1 1 0;
+  width: 0;
+  min-width: 0;
+  margin-inline: 0 !important;
+}
+.v-dialog > .v-overlay__content > .v-card > .v-card-actions .v-btn--variant-text:not(.text-primary) {
+  border: 1px solid var(--winui-control-stroke) !important;
+  background: rgb(var(--v-theme-surface));
+  box-shadow: var(--winui-control-shadow) !important;
+}
+.v-dialog > .v-overlay__content > .v-card > .v-card-actions .v-btn--variant-text:not(.text-primary):hover { background: rgba(var(--v-theme-on-surface), .035); }
+.v-dialog > .v-overlay__content > .v-card > .v-card-actions .v-btn--variant-text:not(.text-primary):active { background: rgba(var(--v-theme-on-surface), .065); box-shadow: none !important; }
+.v-overlay__scrim { background: #000 !important; opacity: .32 !important; }
+
+/* MenuFlyout and ComboBox are the only Acrylic surfaces. The host never paints a second card. */
+.v-overlay.v-menu > .v-overlay__content {
+  overflow: visible;
+  padding: 0;
+  border: 0;
+  background: transparent !important;
+  box-shadow: none !important;
+  filter: none !important;
+  backdrop-filter: none;
+}
+.v-overlay.v-menu > .v-overlay__content > .v-list,
+.v-overlay.v-menu > .v-overlay__content > .v-card,
+.v-select__content > .v-sheet,
+.v-autocomplete__content > .v-sheet,
+.v-combobox__content > .v-sheet,
+.winui-menu {
+  overflow: hidden;
+  padding: 6px;
+  border: 1px solid rgba(var(--v-theme-on-surface), .1);
+  border-radius: var(--winui-radius-overlay) !important;
+  background: rgba(var(--v-theme-surface-variant), .98) !important;
+  box-shadow: var(--winui-flyout-shadow) !important;
+  backdrop-filter: blur(20px) saturate(1.2);
+}
+.v-select__content,
+.v-autocomplete__content,
+.v-combobox__content {
+  /* Vuetify writes the activator width as the connected overlay's inline
+     min-width. Keep the content intrinsically narrow so that value becomes
+     both the effective minimum and final width. */
+  width: auto !important;
+}
+.v-select__content > .v-sheet,
+.v-autocomplete__content > .v-sheet,
+.v-combobox__content > .v-sheet {
+  width: 0;
+  min-width: 100%;
+}
+.v-select__content > .v-sheet > .v-list,
+.v-autocomplete__content > .v-sheet > .v-list,
+.v-combobox__content > .v-sheet > .v-list {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: var(--winui-radius-control) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+:is(.v-select__content, .v-autocomplete__content, .v-combobox__content) .v-list-item,
+.v-menu > .v-overlay__content .v-list-item {
+  min-height: 36px;
+  margin: 2px 0;
+  padding-inline: 12px;
+  border-radius: var(--winui-radius-control) !important;
+  font-size: 14px;
+  font-weight: 400;
+  transition: background-color var(--winui-duration-faster) var(--winui-ease-enter);
+}
+:is(.v-select__content, .v-autocomplete__content, .v-combobox__content) .v-list-item-title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+:is(.v-select__content, .v-autocomplete__content, .v-combobox__content) .v-list-item .v-list-item__overlay { opacity: 0 !important; }
+:is(.v-select__content, .v-autocomplete__content, .v-combobox__content) .v-list-item:hover,
+.v-menu > .v-overlay__content .v-list-item:hover { background: rgba(var(--v-theme-on-surface), .055); }
+:is(.v-select__content, .v-autocomplete__content, .v-combobox__content) .v-list-item--active { background: rgba(var(--v-theme-on-surface), .065); color: rgb(var(--v-theme-on-surface)); }
+:is(.v-select__content, .v-autocomplete__content, .v-combobox__content) .v-list-item--active::before { content: ''; position: absolute; left: 2px; top: 10px; bottom: 10px; width: 3px; border-radius: 2px; background: rgb(var(--v-theme-primary)); opacity: 1; }
+
+/* WinUI flyouts appear at their final geometry; menus only use a short fade. */
+.v-menu > .v-overlay__content {
+  transform: none !important;
+  transform-origin: initial !important;
+  transition-property: opacity !important;
+  transition-duration: var(--winui-duration-faster) !important;
+  transition-timing-function: var(--winui-ease-enter) !important;
+}
+.v-menu:not(.v-overlay--active) > .v-overlay__content { transition-timing-function: var(--winui-ease-exit) !important; }
+
+/* Shared ContentDialog structures used by richer screens. */
+.winui-dialog-title, .winui-dialog-toolbar { min-height: 56px; display: flex; align-items: center; gap: var(--winui-space-2); border-bottom: 0; }
+.winui-dialog-toolbar { padding: 0 var(--winui-space-2) 0 var(--winui-space-4); }
+.winui-dialog-toolbar .v-toolbar-title { font-size: 20px; line-height: 28px; font-weight: 600; }
+.winui-dialog-content { padding: var(--winui-space-4); font-size: 14px; line-height: 20px; }
+.winui-dialog-actions { padding: var(--winui-space-3) var(--winui-space-4); border-top: 1px solid rgb(var(--v-theme-outline)); background: rgb(var(--v-theme-surface-variant)); }
+
+/* DataGrid: caption headers, body-size rows, and a non-clipping adaptive footer. */
+.v-data-table { border-radius: 0 0 var(--winui-radius-overlay) var(--winui-radius-overlay); }
+.v-data-table__wrapper { border-top: 1px solid rgb(var(--v-theme-outline)); }
+.v-data-table thead th { height: 40px !important; font-size: 12px !important; line-height: 16px; font-weight: 600 !important; color: rgb(var(--v-theme-on-surface-variant)); background: rgb(var(--v-theme-surface-variant)) !important; border-bottom: 1px solid rgb(var(--v-theme-outline)) !important; }
+.v-data-table tbody td { height: 44px !important; font-size: 14px; line-height: 20px; border-bottom-color: rgb(var(--v-theme-outline)) !important; }
+.v-data-table tbody tr { transition: background-color var(--winui-duration-faster) var(--winui-ease-enter); }
+.v-data-table tbody tr:hover { background: rgba(var(--v-theme-on-surface), .035) !important; }
+.v-data-table-footer {
+  min-height: 52px;
+  display: grid;
+  grid-template-columns: minmax(160px, 1fr) auto auto;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  overflow: visible;
+  border-top: 1px solid rgb(var(--v-theme-outline));
+  font-size: 12px;
+  line-height: 16px;
+}
+.v-data-table-footer__items-per-page { min-width: 0; justify-self: start; white-space: nowrap; }
+.v-data-table-footer__items-per-page .v-field { min-width: 72px; }
+.v-data-table-footer__info { min-width: 0; padding: 0 6px; white-space: nowrap; }
+.v-data-table-footer__pagination { min-width: 0; margin-inline-start: 0 !important; justify-self: end; }
+.v-data-table-footer .v-pagination { width: auto; min-width: 0; }
+.v-data-table-footer .v-pagination__list { width: auto; min-width: 0; gap: 2px; }
+.v-data-table-footer .v-pagination__item,
+.v-data-table-footer .v-pagination__first,
+.v-data-table-footer .v-pagination__prev,
+.v-data-table-footer .v-pagination__next,
+.v-data-table-footer .v-pagination__last { flex: 0 0 auto; margin: 0; }
+.v-data-table-footer .v-pagination .v-btn { min-width: 28px; width: 28px; height: 28px; padding: 0; border-radius: var(--winui-radius-control) !important; }
+.v-data-table-footer .v-pagination .v-btn--active { color: rgb(var(--v-theme-on-surface)); background: rgba(var(--v-theme-on-surface), .07); }
+.v-data-table-footer .v-pagination .v-btn--active::before { content: ''; position: absolute; bottom: 3px; left: 9px; right: 9px; height: 2px; border-radius: 2px; background: rgb(var(--v-theme-primary)); }
+@media (max-width: 1007px) {
+  .v-data-table-footer { grid-template-columns: 1fr auto; }
+  .v-data-table-footer__items-per-page { grid-column: 1; }
+  .v-data-table-footer__info { grid-column: 2; justify-self: end; }
+  .v-data-table-footer__pagination { grid-column: 1 / -1; justify-self: end; }
+}
+@media (max-width: 640px) {
+  .v-data-table-footer { grid-template-columns: 1fr; }
+  .v-data-table-footer__items-per-page,
+  .v-data-table-footer__info,
+  .v-data-table-footer__pagination { grid-column: 1; }
+  .v-data-table-footer__items-per-page { justify-self: stretch; justify-content: space-between; }
+  .v-data-table-footer__info, .v-data-table-footer__pagination { justify-self: end; }
+}
+
+.data-card { transition: border-color var(--winui-duration-fast) var(--winui-ease-enter); }
+.data-card:hover { border-color: rgba(var(--v-theme-on-surface), .16); }
+.status-chip { font-weight: 600; letter-spacing: 0; }
+.action-group { display: flex; gap: 4px; }
+.page-header { margin-bottom: var(--winui-space-3); }
+.page-header h2 { margin: 0; font-weight: 600; font-size: 24px !important; line-height: 32px; color: rgb(var(--v-theme-on-surface)); }
+.page-header p { margin: var(--winui-space-2) 0 0; color: rgb(var(--v-theme-on-surface-variant)) !important; font-size: 14px; line-height: 20px; }
+.login-bg { background: radial-gradient(circle at 18% 8%, rgba(255,255,255,.72), transparent 34%), linear-gradient(135deg,#edf3f8,#f6f1e9 55%,#edf0f3); }
+::-webkit-scrollbar { width: 7px; height: 7px; background: transparent; }
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-track-piece,
+::-webkit-scrollbar-corner { background: transparent; }
+::-webkit-scrollbar-button { display: none; width: 0; height: 0; }
+::-webkit-scrollbar-thumb {
+  min-height: 32px;
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background: rgba(var(--v-theme-on-surface), .42);
+  background-clip: content-box;
+}
+*:hover::-webkit-scrollbar-thumb { border-width: 2.5px; }
+::-webkit-scrollbar-thumb:hover { border-width: 1.5px; background-color: rgba(var(--v-theme-on-surface), .58); }
+* { scrollbar-width: thin; scrollbar-color: rgba(var(--v-theme-on-surface), .42) transparent; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }

@@ -1,0 +1,173 @@
+/* Reusable composition patterns. Pages opt into semantic classes only. */
+.winui-field--large .v-field { min-height: 40px; }
+.winui-field--large .v-field__input { min-height: 40px !important; padding-block: 8px !important; line-height: 24px; }
+.winui-field--large .v-field__prepend-inner, .winui-field--large .v-field__append-inner { min-height: 40px; align-self: stretch; align-items: center; padding-top: 0 !important; }
+.winui-field--large .v-field__prepend-inner > .v-icon, .winui-field--large .v-field__append-inner > .v-icon { align-self: center; }
+.winui-control--large { min-height: 40px; }
+
+/* App shell: keep navigation chrome fixed and scroll only the routed content pane. */
+.winui-shell {
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0 !important;
+  overflow: hidden;
+}
+.winui-main {
+  height: 100vh;
+  height: 100dvh;
+  min-width: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  border-top: 1px solid rgb(var(--v-theme-outline));
+  border-inline-start: 1px solid rgb(var(--v-theme-outline));
+  border-start-start-radius: var(--winui-radius-overlay);
+  background: rgb(var(--v-theme-background));
+}
+
+.winui-navigation-list { padding: 0 8px 12px; }
+.winui-navigation-list .v-list-item { min-height: 40px; margin: 0; border-radius: var(--winui-radius-control) !important; font-size: 14px; }
+.winui-navigation-list .v-list-item--active { background: rgba(var(--v-theme-on-surface), .065); color: rgb(var(--v-theme-on-surface)); }
+.winui-navigation-list .v-list-item--active::before { content: ''; position: absolute; left: 0; top: 10px; bottom: 10px; width: 3px; border-radius: 2px; background: rgb(var(--v-theme-primary)); opacity: 1; }
+.winui-navigation-list .v-list-group__items .v-list-item { padding-inline-start: 48px !important; }
+.winui-navigation-pane { border-right: 0 !important; background: rgb(var(--v-theme-nav)) !important; }
+.winui-navigation-pane.v-navigation-drawer--rail .v-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 0 !important;
+}
+.winui-navigation-pane.v-navigation-drawer--rail .v-list-item__prepend {
+  position: static !important;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  min-width: 24px;
+  margin-inline-end: 0 !important;
+  transform: none !important;
+}
+.winui-navigation-pane.v-navigation-drawer--rail .v-list-item__prepend > .v-icon {
+  margin-inline-end: 0 !important;
+}
+.winui-navigation-pane.v-navigation-drawer--rail .v-list-item__prepend > .v-list-item__spacer,
+.winui-navigation-pane.v-navigation-drawer--rail .v-list-item__content,
+.winui-navigation-pane.v-navigation-drawer--rail .v-list-item__append {
+  display: none !important;
+}
+.winui-navigation-footer { padding: var(--winui-space-2); border-top: 1px solid rgb(var(--v-theme-outline)); }
+.winui-navigation-footer .v-list-item { min-height: 40px; border-radius: var(--winui-radius-control) !important; font-size: 14px; }
+.winui-command-bar.v-toolbar {
+  padding: 0 var(--winui-space-3);
+  border-bottom: 0 !important;
+  background: rgb(var(--v-theme-nav)) !important;
+  box-shadow: none !important;
+}
+.winui-command-bar .v-toolbar__content { height: 48px !important; }
+.winui-command-bar .v-btn--icon { width: 36px; min-width: 36px; height: 36px; }
+.winui-enabled .command-search { color: rgb(var(--v-theme-on-surface-variant)); border-color: var(--winui-control-stroke); border-radius: var(--winui-radius-control); background: rgb(var(--v-theme-surface-variant)); box-shadow: inset 0 -1px 0 rgba(var(--v-theme-on-surface), .38); transition: background-color var(--winui-duration-faster) var(--winui-ease-enter), box-shadow var(--winui-duration-faster) var(--winui-ease-enter); }
+.winui-enabled .command-search:hover { background: rgb(var(--v-theme-surface)); }
+.winui-enabled .command-search--focused { background: rgb(var(--v-theme-surface)); box-shadow: inset 0 0 0 1px var(--winui-control-stroke), inset 0 -2px 0 rgb(var(--v-theme-primary)); }
+.winui-user-button { min-height: 36px !important; height: 36px; padding: 0 var(--winui-space-2) !important; }
+.winui-user-button .v-btn__content { gap: var(--winui-space-2); }
+.winui-page-breadcrumb {
+  min-height: 24px;
+  display: flex;
+  align-items: center;
+  gap: var(--winui-space-2);
+  margin-bottom: var(--winui-space-4);
+  color: rgb(var(--v-theme-on-surface-variant));
+  font-size: 14px;
+  line-height: 20px;
+}
+.winui-page-breadcrumb strong { color: rgb(var(--v-theme-on-surface)); font-weight: 600; }
+.winui-page-content { min-width: 0; }
+
+.winui-component-card .v-card-title { padding-bottom: 2px; font-size: 18px !important; font-weight: 600; }
+.winui-component-card .v-card-subtitle { padding-top: 0; opacity: 1; color: rgb(var(--v-theme-on-surface-variant)); }
+.winui-component-card .v-card-text { padding-top: var(--winui-space-4); }
+
+/* Component gallery and settings pages. These public layout patterns keep
+   control samples free from page-level Vuetify overrides. */
+.winui-showcase { display: grid; gap: var(--winui-space-5); }
+.winui-showcase-header { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--winui-space-4); }
+.winui-showcase-header h1 { margin: 0; font-size: 28px; line-height: 36px; font-weight: 600; }
+.winui-showcase-header p { margin: var(--winui-space-2) 0 0; color: rgb(var(--v-theme-on-surface-variant)); font-size: 14px; line-height: 20px; }
+.winui-showcase-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--winui-space-4); align-items: start; }
+.winui-showcase-card { min-width: 0; }
+.winui-showcase-card--wide { grid-column: 1 / -1; }
+.winui-showcase-row { min-height: 64px; display: flex; flex-wrap: wrap; align-items: center; gap: var(--winui-space-3); }
+.winui-choice-stack { display: grid; justify-items: start; gap: var(--winui-space-1); }
+.winui-value-readout { color: rgb(var(--v-theme-on-surface-variant)); font-size: 13px; line-height: 20px; }
+.winui-color-picker-layout { display: flex; flex-wrap: wrap; align-items: center; gap: var(--winui-space-5); }
+.winui-color-preview { display: flex; align-items: center; gap: var(--winui-space-3); font-family: ui-monospace, 'Cascadia Mono', monospace; }
+.winui-color-preview__swatch { width: 48px; height: 48px; border: 1px solid var(--winui-control-stroke); border-radius: var(--winui-radius-control); box-shadow: var(--winui-control-shadow); }
+.winui-slider-heading { display: flex; justify-content: space-between; margin-bottom: var(--winui-space-2); font-size: 14px; }
+.winui-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--winui-space-4); }
+.winui-form-grid__wide { grid-column: 1 / -1; }
+.winui-dialog-form { display: grid; gap: var(--winui-space-4); }
+.winui-dialog-form p { margin: 0; color: rgb(var(--v-theme-on-surface-variant)); font-size: 14px; line-height: 20px; }
+.winui-split-button {
+  display: inline-flex;
+  align-items: stretch;
+  height: 32px;
+  overflow: hidden;
+  border: 1px solid var(--winui-control-stroke);
+  border-radius: var(--winui-radius-control);
+  background: rgb(var(--v-theme-surface));
+  box-shadow: var(--winui-control-shadow);
+}
+.winui-split-button > .v-btn {
+  min-height: 30px !important;
+  height: 30px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+.winui-split-button > .v-btn:first-child {
+  border-inline-end: 1px solid rgb(var(--v-theme-outline)) !important;
+}
+.winui-split-button > .v-btn.bg-primary:first-child {
+  border-inline-end-color: rgba(var(--v-theme-on-primary), .24) !important;
+}
+.winui-split-button > .v-btn:last-child {
+  min-width: 36px !important;
+  width: 36px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.winui-split-button > .v-btn:focus-visible { outline: 0; }
+.winui-split-button:has(> .v-btn:focus-visible) {
+  outline: 2px solid rgb(var(--v-theme-on-surface));
+  outline-offset: 2px;
+}
+
+.winui-data-commandbar { min-height: 56px; padding: 0 var(--winui-space-3) 0 var(--winui-space-4); }
+.winui-data-commandbar .v-toolbar-title { font-size: 15px; font-weight: 600; }
+.winui-data-search { max-width: 230px; }
+.winui-control-row { display: flex; align-items: center; gap: var(--winui-space-1); }
+.winui-month-selector { display: flex; flex-wrap: wrap; gap: var(--winui-space-1); }
+.winui-calendar-cell { min-height: 90px; border: 1px solid rgb(var(--v-theme-outline)); cursor: pointer; transition: background-color var(--winui-duration-fast) var(--winui-ease-enter); }
+.winui-calendar-cell:hover { background-color: rgba(var(--v-theme-primary), .04); }
+.winui-calendar-cell--empty { min-height: 90px; border: 1px solid transparent; }
+.winui-task-select { min-width: 180px; }
+.winui-number-field { width: 70px; }
+.winui-responsive-color-picker { max-width: 100%; }
+.winui-login-card { border-radius: var(--winui-radius-overlay) !important; box-shadow: 0 12px 36px rgba(0, 0, 0, .12) !important; }
+
+@media (max-width: 1007px) {
+  .winui-showcase-grid { grid-template-columns: minmax(0, 1fr); }
+  .winui-showcase-card--wide { grid-column: auto; }
+  .winui-data-commandbar { height: auto !important; padding-block: 12px; flex-wrap: wrap; gap: 8px; }
+  .winui-data-commandbar .v-toolbar-title { flex: 1 0 calc(100% - 20px); }
+  .winui-data-search { order: 5; max-width: none; flex: 1 0 100%; }
+}
+@media (max-width: 640px) {
+  .winui-showcase-header h1 { font-size: 24px; line-height: 32px; }
+  .winui-showcase-badge { display: none !important; }
+  .winui-form-grid { grid-template-columns: minmax(0, 1fr); }
+  .winui-form-grid__wide { grid-column: auto; }
+  .winui-command-bar { padding-inline: var(--winui-space-2); }
+  .winui-command-bar .winui-user-button > .v-btn__content > .v-icon { display: none; }
+  .winui-responsive-color-picker { width: 100% !important; }
+}
